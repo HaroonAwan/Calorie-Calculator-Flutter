@@ -49,6 +49,8 @@ class MyApp extends StatelessWidget {
         DefaultMaterialLocalizations.delegate
       ],
       theme: CupertinoThemeData(
+        barBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
         textTheme: CupertinoTextThemeData(
           primaryColor: Colors.red,
         ),

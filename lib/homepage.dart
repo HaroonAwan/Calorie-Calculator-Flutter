@@ -72,35 +72,38 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     showDialog(
                         barrierDismissible: true,
                         context: context,
-                        child: CupertinoAlertDialog(
-                          title: Text("Change Daily Caloric Intake"),
-                          content: Container(
-                            height: 200,
-                            child: CupertinoPicker.builder(
-                                itemExtent: 20,
-                                childCount: 5200,
-                                scrollController: FixedExtentScrollController(initialItem:
-                                lastDays[index].dailyGoal - 800),
-                                onSelectedItemChanged: (val) async {
+                        child: Theme(
+                          data: ThemeData.light(),
+                          child: CupertinoAlertDialog(
+                            title: Text("Change Daily Caloric Intake"),
+                            content: Container(
+                              height: 200,
+                              child: CupertinoPicker.builder(
+                                  itemExtent: 20,
+                                  childCount: 5200,
+                                  scrollController: FixedExtentScrollController(initialItem:
+                                  lastDays[index].dailyGoal - 800),
+                                  onSelectedItemChanged: (val) async {
 
-                                  var box = await Hive.openBox('dailyCalorieIntake');
-                                  print(box.values);
+                                    var box = await Hive.openBox('dailyCalorieIntake');
+                                    print(box.values);
 
-                                  await box.put('dailyCalorieIntake', val+800);
-                                  print(box.values);
-                                  lastDays[index].dailyGoal = val+800;
-                                  lastDays[index].save();
+                                    await box.put('dailyCalorieIntake', val+800);
+                                    print(box.values);
+                                    lastDays[index].dailyGoal = val+800;
+                                    lastDays[index].save();
 
-                                  setState(() {
+                                    setState(() {
 
-                                  });
+                                    });
 
-                                },
-                                itemBuilder: (context,index){
-                                  return Text((index+800).toString(),style: TextStyle(
-                                      color: Colors.black
-                                  ),);
-                                }),
+                                  },
+                                  itemBuilder: (context,index){
+                                    return Text((index+800).toString(),style: TextStyle(
+                                        color: Colors.black
+                                    ),);
+                                  }),
+                            ),
                           ),
                         )
                     );

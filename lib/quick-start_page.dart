@@ -36,6 +36,7 @@ class _QuickStartPageState extends State<QuickStartPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      backgroundColor: Colors.white,
       key: key,
       navigationBar: CupertinoNavigationBar(
           backgroundColor: Color(0xFFEAEAEA),
@@ -86,25 +87,28 @@ class _QuickStartPageState extends State<QuickStartPage> {
                           showDialog(
                             barrierDismissible: true,
                               context: context,
-                            child: CupertinoAlertDialog(
-                              title: Text("Set Daily Caloric Intake"),
-                              content: Container(
-                                height: 200,
-                                child: CupertinoPicker.builder(
-                                  itemExtent: 20,
-                                    childCount: 5200,
-                                    scrollController: FixedExtentScrollController(initialItem: index),
-                                    onSelectedItemChanged: (val){
-                                  setState(() {
-                                    selectedCalories = val+800;
-                                    index = val;
-                                  });
-                                },
-                                    itemBuilder: (context,index){
-                                  return Text((index+800).toString(),style: TextStyle(
-                                    color: Colors.black
-                                  ),);
-                                }),
+                            child: Theme(
+                              data: ThemeData.light(),
+                              child: CupertinoAlertDialog(
+                                title: Text("Set Daily Caloric Intake"),
+                                content: Container(
+                                  height: 200,
+                                  child: CupertinoPicker.builder(
+                                    itemExtent: 20,
+                                      childCount: 5200,
+                                      scrollController: FixedExtentScrollController(initialItem: index),
+                                      onSelectedItemChanged: (val){
+                                    setState(() {
+                                      selectedCalories = val+800;
+                                      index = val;
+                                    });
+                                  },
+                                      itemBuilder: (context,index){
+                                    return Text((index+800).toString(),style: TextStyle(
+                                      color: Colors.black
+                                    ),);
+                                  }),
+                                ),
                               ),
                             )
                           );

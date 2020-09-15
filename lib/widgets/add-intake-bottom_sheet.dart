@@ -71,42 +71,45 @@ class _SortBottomSheetState extends State<AddIntakeSheet> {
                     fontWeight: FontWeight.bold
                   ),),
                 ),
-                GregTextField(
-                  controller: calories,
-                  context:context,
-                  onlyNumbers: true,
-                  keyboardType: TextInputType.number,
-                  prefix: FlatButton.icon(
-                    padding: EdgeInsets.all(0),
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: CircleBorder(),
-                    icon: Icon(Icons.remove),
-                    label: SizedBox(),
-                    onPressed: (){
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      var val = int.parse(calories.text);
-                      if(val>1 && val!=10){
+                Theme(
+                  data: ThemeData.light(),
+                  child: GregTextField(
+                    controller: calories,
+                    context:context,
+                    onlyNumbers: true,
+                    keyboardType: TextInputType.number,
+                    prefix: FlatButton.icon(
+                      padding: EdgeInsets.all(0),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: CircleBorder(),
+                      icon: Icon(Icons.remove),
+                      label: SizedBox(),
+                      onPressed: (){
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        var val = int.parse(calories.text);
+                        if(val>1 && val!=10){
+                          setState(() {
+                            calories.text = (val - 10).toString();
+                          });
+                        }
+                      },
+                    ),
+                    suffix: FlatButton.icon(
+                      padding: EdgeInsets.all(0),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      shape: CircleBorder(),
+                      label: SizedBox(),
+                      icon: Icon(Icons.add),
+                      onPressed: (){
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        var val = int.parse(calories.text);
                         setState(() {
-                          calories.text = (val - 10).toString();
+                          calories.text = (val + 10).toString();
                         });
-                      }
-                    },
-                  ),
-                  suffix: FlatButton.icon(
-                    padding: EdgeInsets.all(0),
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: CircleBorder(),
-                    label: SizedBox(),
-                    icon: Icon(Icons.add),
-                    onPressed: (){
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      var val = int.parse(calories.text);
-                      setState(() {
-                        calories.text = (val + 10).toString();
-                      });
-                    },
+                      },
+                    ),
                   ),
                 ),
               ],
