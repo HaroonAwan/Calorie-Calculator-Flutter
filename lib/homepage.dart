@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gregdoucette/model/intake-history_model.dart';
+import 'package:gregdoucette/utilities/custom-navigator.dart';
 import 'package:hive/hive.dart';
 import 'model/intake_model.dart';
 import 'widgets/add-intake-bottom_sheet.dart';
@@ -148,16 +149,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 if (direction == DismissDirection.endToStart) {
                   return Future.value(true);
                 } else {
-                  var res = await showModalBottomSheet(
-                      isScrollControlled: true,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(15.0)),
-                      ),
-                      context: context,
-                      builder: (context) => AddIntakeSheet(
-                        intake: lastDays[index].intakes[i],
-                      ));
+                  var res = await CustomNavigator.navigateTo(context, AddIntakeSheet(intake: lastDays[index].intakes[i],));
 
                   if (res != null) {
                     lastDays[index].intakes[i] = res;
@@ -195,16 +187,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         backgroundColor: Color(0xFFD40504),
         child: Icon(CupertinoIcons.add,size: 30,semanticLabel: 'Add calorie intake',),
         onPressed: () async {
-          var res = await  showModalBottomSheet(
-           isScrollControlled: true,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(15.0)),
-              ),
-              context: context,
-              builder: (context) => AddIntakeSheet(
-
-              ));
+          var res = await  CustomNavigator.navigateTo(context, AddIntakeSheet());
 
           if (res != null) {
             lastDays[index].intakes.add(res);
@@ -218,7 +201,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xFFEAEAEA),
-        title: Image.asset("assets/images/logo.jpeg",scale: 10),
+        title: Text("Calorie Calculator",style: TextStyle(color: Colors.red),),
+        // title: Image.asset("assets/images/logo.jpeg",scale: 10),
         bottom: TabBar(
           isScrollable: true,
           controller: controller,

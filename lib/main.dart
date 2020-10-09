@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      title: 'Greg Doucette Calorie Calculator',
+      title: 'Calorie Calculator',
       localizationsDelegates: [
         DefaultMaterialLocalizations.delegate
       ],

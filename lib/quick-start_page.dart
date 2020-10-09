@@ -15,8 +15,8 @@ class QuickStartPage extends StatefulWidget {
 class _QuickStartPageState extends State<QuickStartPage> {
 
   static int index = 0;
-  int selectedCalories = 800;
-  // TextEditingController selectedCalories = TextEditingController.fromValue(TextEditingValue(text: 800.toString()));
+  // int selectedCalories = 800;
+  TextEditingController selectedCalories = TextEditingController.fromValue(TextEditingValue(text: 800.toString()));
   FixedExtentScrollController controller =  FixedExtentScrollController(initialItem: index);
   var key = GlobalKey<ScaffoldState>();
 
@@ -40,7 +40,7 @@ class _QuickStartPageState extends State<QuickStartPage> {
       key: key,
       navigationBar: CupertinoNavigationBar(
           backgroundColor: Color(0xFFEAEAEA),
-        middle: Image.asset("assets/images/logo.jpeg",scale: 10,),
+        // middle: Image.asset("assets/images/logo.jpeg",scale: 10,),
       ),
       child: Material(
         child: SingleChildScrollView(
@@ -56,10 +56,10 @@ class _QuickStartPageState extends State<QuickStartPage> {
                       fontSize: 20
                     ),
                     children: <TextSpan>[
-                      TextSpan(text: 'GREG DOUCETTE ', style: TextStyle(fontWeight: FontWeight.bold,
-                      color: Color(0xFFD40504),
-                        fontFamily: 'NewTown'
-                      )),
+                      // TextSpan(text: 'GREG DOUCETTE ', style: TextStyle(fontWeight: FontWeight.bold,
+                      // color: Color(0xFFD40504),
+                      //   fontFamily: 'NewTown'
+                      // )),
                       TextSpan(text: 'calorie calculator!')
                     ],
                   ),
@@ -79,85 +79,85 @@ class _QuickStartPageState extends State<QuickStartPage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: ''
                     ),),
-                    Container(
-                      child: ListTile(
-                        title: Text("Daily intake"),
-                        trailing: Text(selectedCalories.toString()),
-                        onTap: (){
-                          showDialog(
-                            barrierDismissible: true,
-                              context: context,
-                            child: Theme(
-                              data: ThemeData.light(),
-                              child: CupertinoAlertDialog(
-                                title: Text("Set Daily Caloric Intake"),
-                                content: Container(
-                                  height: 200,
-                                  child: CupertinoPicker.builder(
-                                    itemExtent: 20,
-                                      childCount: 5200,
-                                      scrollController: FixedExtentScrollController(initialItem: index),
-                                      onSelectedItemChanged: (val){
-                                    setState(() {
-                                      selectedCalories = val+800;
-                                      index = val;
-                                    });
-                                  },
-                                      itemBuilder: (context,index){
-                                    return Text((index+800).toString(),style: TextStyle(
-                                      color: Colors.black
-                                    ),);
-                                  }),
-                                ),
-                              ),
-                            )
-                          );
-                        },
-                      ),
-                    ),
-
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: GregTextField(
-                    //     controller: selectedCalories,
-                    //     context:context,
-                    //     onlyNumbers: true,
-                    //     keyboardType: TextInputType.number,
-                    //     prefix: FlatButton.icon(
-                    //       padding: EdgeInsets.all(0),
-                    //       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    //       shape: CircleBorder(),
-                    //       icon: Icon(Icons.remove),
-                    //       label: SizedBox(),
-                    //       onPressed: (){
-                    //
-                    //         var val = int.parse(selectedCalories.text);
-                    //         if(val > 800 && val <= 6000){
-                    //           setState(() {
-                    //             selectedCalories.text = (val - 10).toString();
-                    //           });
-                    //         }
-                    //
-                    //       },
-                    //     ),
-                    //     suffix: FlatButton.icon(
-                    //       padding: EdgeInsets.all(0),
-                    //       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    //       shape: CircleBorder(),
-                    //       label: SizedBox(),
-                    //       icon: Icon(Icons.add),
-                    //       onPressed: (){
-                    //         var val = int.parse(selectedCalories.text);
-                    //         if(val < 6000){
-                    //           setState(() {
-                    //             selectedCalories.text = (val + 10).toString();
-                    //           });
-                    //         }
-                    //
-                    //       },
-                    //     ),
+                    // Container(
+                    //   child: ListTile(
+                    //     title: Text("Daily intake"),
+                    //     trailing: Text(selectedCalories.toString()),
+                    //     onTap: (){
+                    //       showDialog(
+                    //         barrierDismissible: true,
+                    //           context: context,
+                    //         child: Theme(
+                    //           data: ThemeData.light(),
+                    //           child: CupertinoAlertDialog(
+                    //             title: Text("Set Daily Caloric Intake"),
+                    //             content: Container(
+                    //               height: 200,
+                    //               child: CupertinoPicker.builder(
+                    //                 itemExtent: 20,
+                    //                   childCount: 5200,
+                    //                   scrollController: FixedExtentScrollController(initialItem: index),
+                    //                   onSelectedItemChanged: (val){
+                    //                 setState(() {
+                    //                   selectedCalories = val+800;
+                    //                   index = val;
+                    //                 });
+                    //               },
+                    //                   itemBuilder: (context,index){
+                    //                 return Text((index+800).toString(),style: TextStyle(
+                    //                   color: Colors.black
+                    //                 ),);
+                    //               }),
+                    //             ),
+                    //           ),
+                    //         )
+                    //       );
+                    //     },
                     //   ),
                     // ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GregTextField(
+                        controller: selectedCalories,
+                        context:context,
+                        onlyNumbers: true,
+                        keyboardType: TextInputType.number,
+                        prefix: FlatButton.icon(
+                          padding: EdgeInsets.all(0),
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: CircleBorder(),
+                          icon: Icon(Icons.remove),
+                          label: SizedBox(),
+                          onPressed: (){
+
+                            var val = int.parse(selectedCalories.text);
+                            if(val > 800 && val <= 6000){
+                              setState(() {
+                                selectedCalories.text = (val - 10).toString();
+                              });
+                            }
+
+                          },
+                        ),
+                        suffix: FlatButton.icon(
+                          padding: EdgeInsets.all(0),
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: CircleBorder(),
+                          label: SizedBox(),
+                          icon: Icon(Icons.add),
+                          onPressed: (){
+                            var val = int.parse(selectedCalories.text);
+                            if(val < 6000){
+                              setState(() {
+                                selectedCalories.text = (val + 10).toString();
+                              });
+                            }
+
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 // Expanded(child: Container(),),
@@ -171,23 +171,24 @@ class _QuickStartPageState extends State<QuickStartPage> {
                         color: Color(0xFFD40504),
                         textColor: Colors.white,
                           onPressed: () async {
-                          if(selectedCalories<800){
+                          int calories = int.parse(selectedCalories.text);
+                          if(calories<800){
                             showToastMsg("Your daily caloric intake cannot be less than 800",true);
                             return;
                           }
-                          if(selectedCalories.isNegative){
+                          if(calories.isNegative){
                             showToastMsg("Your daily caloric intake cannot be negative",true);
                             return;
                           }
-                          if(selectedCalories==0){
+                          if(calories==0){
                             showToastMsg("Your daily caloric intake cannot be zero",true);
                             return;
                           }
-                          if(selectedCalories>6000){
+                          if(calories>6000){
                             showToastMsg("Your daily caloric intake cannot exceed 6000",true);
                             return;
                           }
-                         await setCalorieGoal(selectedCalories);
+                         await setCalorieGoal(calories);
                           CustomNavigator.pushReplacement(context, HomePage());
                           }, icon: Text("Let's Start"), label: Icon(CupertinoIcons.forward)),
                   ),
